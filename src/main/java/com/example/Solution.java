@@ -93,7 +93,6 @@ public class Solution {
 
     public static void task08() {
         //Átlagos bérlési időtartam
-
         int sumDay = 0;
         for(Rent rent: rentList) {
             sumDay += ChronoUnit.DAYS.between(rent.getStartDate(), rent.getEndDate());

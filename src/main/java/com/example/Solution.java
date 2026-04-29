@@ -76,4 +76,29 @@ public class Solution {
         );
 
     }
+
+    public static void task07() {
+        //Bérlések száma festőnként
+        Map<String, Integer> stat = new HashMap<>();
+
+        for(Rent rent: rentList) {
+            stat.put(rent.getArtist(), stat.getOrDefault(rent.getArtist(), 0) + 1);
+        }
+
+        System.out.println("\nBérlések száma festőnként:");
+        for(Map.Entry<String, Integer> entry : stat.entrySet()) {
+            System.out.printf("%s: %d db\n", entry.getKey(), entry.getValue());
+        }
+    }
+
+    public static void task08() {
+        //Átlagos bérlési időtartam
+
+        int sumDay = 0;
+        for(Rent rent: rentList) {
+            sumDay += ChronoUnit.DAYS.between(rent.getStartDate(), rent.getEndDate());
+        }
+        double average = (double) sumDay / rentList.size();
+        System.out.printf("Átlagos bérlési időtartam: %.1f nap\n", average);
+    }
 }

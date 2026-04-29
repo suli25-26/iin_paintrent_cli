@@ -1,6 +1,7 @@
 package com.example;
 
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
@@ -27,5 +28,28 @@ public class Solution {
             sum += rent.getTotalPrice();
         }
         System.out.printf("\nTeljes éves bevétel: %,d Ft\n", sum);
+    }
+
+    public static void task04() {
+        //Legdrágább bérlés
+        Rent maxRent = rentList.get(0);
+        for(Rent rent : rentList) {
+            if(rent.getTotalPrice()> maxRent.getTotalPrice()) {
+                maxRent = rent;
+            }
+        }
+        System.out.printf("Legdrágább bérlés: %s (%,d Ft)\n", 
+        maxRent.getTitle(), maxRent.getTotalPrice());
+    }
+
+    public static void task05() {
+        List<Integer> painingidList = new ArrayList<>();
+        for(Rent rent: rentList) {
+            if(!painingidList.contains(rent.getPaintingid())) {
+                painingidList.add(rent.getPaintingid());
+            }
+        }
+        int count = painingidList.size();
+        System.out.printf("Különböző festmények száma: %d\n", count);
     }
 }

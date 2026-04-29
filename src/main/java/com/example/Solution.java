@@ -2,7 +2,9 @@ package com.example;
 
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Solution {
     static List<Rent> rentList = Storage.readContent();
@@ -51,5 +53,27 @@ public class Solution {
         }
         int count = painingidList.size();
         System.out.printf("Különböző festmények száma: %d\n", count);
+    }
+
+    public static void task06() {
+        //Leggyakrabban bérelt festmény
+        Map<String, Integer> stat = new HashMap<>();
+        for(Rent rent: rentList) {
+            String title = rent.getTitle();
+            stat.put(title, stat.getOrDefault(title, 0) + 1);
+        }
+        String maxTitle = "";
+        int maxCount = -1;
+
+        for(Map.Entry<String, Integer> entry:stat.entrySet()) {
+            if(entry.getValue()> maxCount) {
+                maxCount = entry.getValue();
+                maxTitle = entry.getKey();
+            }
+        }
+        System.out.printf("Legtöbbször bérelt festmény: %s (%d alkalom)\n",
+            maxTitle, maxCount
+        );
+
     }
 }
